@@ -7,7 +7,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { PlusCircle, Sparkles, Library, Search, LogOut } from 'lucide-react'
 import dynamic from 'next/dynamic'
@@ -51,10 +51,11 @@ export default function Home() {
     })
 
     return () => subscription.unsubscribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function loadPrompts() {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('prompts')
       .select('*')
       .order('updated_at', { ascending: false })
@@ -67,7 +68,7 @@ export default function Home() {
   async function createPrompt() {
     if (!user) return
 
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('prompts')
       .insert([
         {
@@ -91,7 +92,7 @@ export default function Home() {
   async function savePrompt() {
     if (!selectedPrompt) return
 
-    const { error } = await supabase
+    await supabase
       .from('prompts')
       .update({
         title: editTitle,
@@ -100,11 +101,9 @@ export default function Home() {
       })
       .eq('id', selectedPrompt.id)
 
-    if (!error) {
-      await loadPrompts()
-      setIsEditing(false)
-      setSelectedPrompt(null)
-    }
+    await loadPrompts()
+    setIsEditing(false)
+    setSelectedPrompt(null)
   }
 
   async function optimizePrompt() {
