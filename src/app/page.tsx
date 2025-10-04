@@ -145,7 +145,7 @@ export default function Home() {
             <div className="flex justify-center mb-4">
               <Sparkles className="h-12 w-12 text-stone-700 dark:text-stone-300" />
             </div>
-            <CardTitle className="text-2xl">CHilly's AI Prompt Enhancer</CardTitle>
+            <CardTitle className="text-2xl">CHilly&apos;s AI Prompt Enhancer</CardTitle>
             <CardDescription>Sign in to access your prompt library</CardDescription>
           </CardHeader>
           <CardContent>
@@ -170,7 +170,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <Sparkles className="h-8 w-8 text-stone-700 dark:text-stone-300" />
               <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
-                CHilly's AI Prompt Enhancer
+                CHilly&apos;s AI Prompt Enhancer
               </h1>
             </div>
             <div className="flex items-center gap-3">
